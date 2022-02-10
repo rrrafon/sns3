@@ -113,11 +113,25 @@
 	</style>
 <link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
 <link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
+<link rel='manifest' href='index.manifest.json'>
+<script type='application/javascript'>window.addEventListener('load', () => {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('index.service.worker.js');}});</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FMLRDTL158"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FMLRDTL158');
+</script>
+
+
 <script>
 
 function startRecording(fn = 'create_n_say.webm', timerec = 3000) {
+  var canvas = document.querySelector('canvas');
   const chunks = []; // here we will store our recorded media chunks (Blobs)
-  const stream = canvas.captureStream(); // grab our canvas MediaStream
+  const stream = canvas.captureStream(24); // grab our canvas MediaStream
   const rec = new MediaRecorder(stream); // init the recorder
   // every time the recorder has new data, we will store it in our array
   rec.ondataavailable = e => chunks.push(e.data);
@@ -168,7 +182,7 @@ function exportVid(fn, blob) {
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":7298640,"index.wasm":17493574},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":7298720,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {

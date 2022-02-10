@@ -131,7 +131,7 @@
 function startRecording(fn = 'create_n_say.webm', timerec = 3000) {
   var canvas = document.querySelector('canvas');
   const chunks = []; // here we will store our recorded media chunks (Blobs)
-  const stream = canvas.captureStream(24); // grab our canvas MediaStream
+  const stream = canvas.captureStream(); // grab our canvas MediaStream
   const rec = new MediaRecorder(stream); // init the recorder
   // every time the recorder has new data, we will store it in our array
   rec.ondataavailable = e => chunks.push(e.data);

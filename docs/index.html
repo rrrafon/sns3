@@ -140,6 +140,8 @@ function startRecording(fn = 'create_n_say.webm', timerec = 3000) {
 
 function exportVid(fn, blob) {
   const vid = document.createElement('video');
+  window.height = 300;
+  window.width = 300;	
   vid.src = window.URL.createObjectURL(blob);
   document.body.appendChild(vid);
   const a = document.createElement('a');

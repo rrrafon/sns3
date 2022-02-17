@@ -5,10 +5,10 @@
 	<meta name='viewport' content='width=device-width, user-scalable=no' />
 	<title>SayNSend</title>
 	<style type='text/css'>
-		
+
 		body {
 			touch-action: none;
-			margin: auto;
+			margin: 0;
 			border: 0 none;
 			padding: 0;
 			text-align: center;
@@ -17,13 +17,10 @@
 
 		#canvas {
 			display: block;
-			padding-left: 0;
-			padding-right: 0;
-			margin-left: auto;
-			margin-right: auto;
-    		color: white;
+			margin: 0;
+			color: white;
 		}
-		
+
 		#canvas:focus {
 			outline: none;
 		}
@@ -184,7 +181,7 @@ function exportVid(fn, blob) {
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4494080,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4494080,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {

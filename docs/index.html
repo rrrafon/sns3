@@ -139,10 +139,11 @@ function startRecording(fn = 'create_n_say.webm', timerec = 3000) {
 }
 
 function exportVid(fn, blob) {
+  //context.drawImage(img/vid,sx,sy,swidth,sheight,x,y,width,height);
   const vid = document.createElement('video');
-  window.height = 300;
-  window.width = 300;	
   vid.src = window.URL.createObjectURL(blob);
+  var vid_ctx = vid.getContext("2D");
+  vid.drawImage(100,100);	
   document.body.appendChild(vid);
   const a = document.createElement('a');
   a.download = fn;

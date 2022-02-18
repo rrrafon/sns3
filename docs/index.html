@@ -117,6 +117,7 @@
 <script type='application/javascript'>window.addEventListener('load', () => {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('index.service.worker.js');}});</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMLRDTL158"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -127,6 +128,34 @@
 
 <script>
 
+let audioStream = null;
+let audioChunks = [];
+let audioBlob = null;
+
+function audioRec(){
+  audioStream = navigator.mediaDevices.getUserMedia({ audio: true });
+  const audiorecord = new MediaRecorder(audioStream);
+  audiorecord.ondataavailable = e => audioChunks.push(e.data);
+  audiorecord.onstop =  audioEndRec();  
+  audiorecord.start(2000);	  
+}
+
+function audioEndRec(){
+    mediaRecorder.stop();
+    audioStream.getTracks().forEach(track => track.stop());
+}
+
+function audioPreview(){
+ 	if (!audioBlob.length)
+        return;
+    // Let's concatenate blobs to preview the recorded content
+    video.src = URL.createObjectURL(new Blob(blobs, { type: mediaRecorder.mimeType }));
+}
+
+//</script>
+//<script>
+
+// this is for video 
 
 function startRecording(fn = 'create_n_say.webm', timerec = 3000) {
   const chunks = [];
@@ -153,8 +182,23 @@ function exportVid(fn, blob) {
   
 }
 
+</script>
+
+
+<script>
+function openFile() {
+        // creating input on-the-fly
+        var input = $(document.createElement("input"));
+        input.attr("type", "file");
+        // add onchange handler if you wish to get the file :)
+        input.trigger("click"); // opening dialog
+        return false; // avoiding navigation
+}
 
 </script>
+
+
+
 
 
 </head>
@@ -181,7 +225,7 @@ function exportVid(fn, blob) {
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4494080,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4495776,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {

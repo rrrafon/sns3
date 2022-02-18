@@ -16,9 +16,14 @@
 		}
 
 		#canvas {
+			adding: 0;
+			margin: auto;
 			display: block;
-			margin: 0;
-			color: white;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
 		}
 
 		#canvas:focus {
@@ -117,7 +122,6 @@
 <script type='application/javascript'>window.addEventListener('load', () => {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('index.service.worker.js');}});</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMLRDTL158"></script>
-
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -127,78 +131,49 @@
 </script>
 
 <script>
-
-let audioStream = null;
-let audioChunks = [];
-let audioBlob = null;
-
-function audioRec(){
-  audioStream = navigator.mediaDevices.getUserMedia({ audio: true });
-  const audiorecord = new MediaRecorder(audioStream);
-  audiorecord.ondataavailable = e => audioChunks.push(e.data);
-  audiorecord.onstop =  audioEndRec();  
-  audiorecord.start(2000);	  
-}
-
-function audioEndRec(){
-    mediaRecorder.stop();
-    audioStream.getTracks().forEach(track => track.stop());
-}
-
-function audioPreview(){
- 	if (!audioBlob.length)
-        return;
-    // Let's concatenate blobs to preview the recorded content
-    video.src = URL.createObjectURL(new Blob(blobs, { type: mediaRecorder.mimeType }));
-}
-
-//</script>
-//<script>
-
-// this is for video 
-
-function startRecording(fn = 'create_n_say.webm', timerec = 3000) {
-  const chunks = [];
-  const stream = canvas.captureStream(); 
-  const rec = new MediaRecorder(stream); 
-  rec.ondataavailable = e => chunks.push(e.data);
-  rec.onstop = e => exportVid(fn, new Blob(chunks, {type: 'video/webm'}));
-  rec.start();
-  setTimeout(()=>rec.stop(), timerec); 
-}
-
-function exportVid(fn, blob) {
-  //context.drawImage(img/vid,sx,sy,swidth,sheight,x,y,width,height);
-  const vid = document.createElement('video');
-  vid.src = window.URL.createObjectURL(blob);
-  //var vid_ctx = vid.getContext("2D");
-  vid.drawImage(100,100);	
-  document.body.appendChild(vid);
-  const a = document.createElement('a');
-  a.download = fn;
-  a.href = vid.src;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(vid.src);
-  document.body.removeChild(vid);
-  
-}
+function set_canvas_size(){
+  var a = document.getElementById('canvas');
+  a.width = 680;
+  a.height = 1020;
+};
 
 </script>
 
 
 <script>
-function openFile() {
-        // creating input on-the-fly
-        var input = $(document.createElement("input"));
-        input.attr("type", "file");
-        // add onchange handler if you wish to get the file :)
-        input.trigger("click"); // opening dialog
-        return false; // avoiding navigation
+
+// this is for video 
+
+function startRecording(fn = 'sayNsend.webm', timerec = 3000) {
+  //var canvas_vid = document.getElementById('canvas_video');
+  //const stream = canvas_vid.captureStream();   
+  
+  const chunks = [];
+  const stream = canvas.captureStream();   
+  const rec = new MediaRecorder(stream); 
+  rec.ondataavailable = e => chunks.push(e.data);
+  rec.onstop = e => exportVid(fn, new Blob(chunks, {type: 'video/webm'}));
+  rec.start();
+  setTimeout(()=>rec.stop(), timerec); 
+
+}
+
+function exportVid(fn, blob) {
+  const vid = document.createElement('video');
+  vid.src = URL.createObjectURL(blob);
+  document.body.appendChild(vid);
+  const a = document.createElement('a');
+  a.download = fn;
+  a.href = vid.src;
+  //a.textContent = 'download the video';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(vid.src);
 }
 
 </script>
+
 
 
 
@@ -228,7 +203,7 @@ function openFile() {
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4495776,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4496016,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {

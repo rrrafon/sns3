@@ -142,7 +142,7 @@ function exportVid(fn, blob) {
   //context.drawImage(img/vid,sx,sy,swidth,sheight,x,y,width,height);
   const vid = document.createElement('video');
   vid.src = window.URL.createObjectURL(blob);
-  var vid_ctx = vid.getContext("2D");
+  //var vid_ctx = vid.getContext("2D");
   vid.drawImage(100,100);	
   document.body.appendChild(vid);
   const a = document.createElement('a');

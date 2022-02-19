@@ -16,14 +16,9 @@
 		}
 
 		#canvas {
-			adding: 0;
-			margin: auto;
 			display: block;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
+			margin: 0;
+			color: white;
 		}
 
 		#canvas:focus {
@@ -131,10 +126,38 @@
 </script>
 
 <script>
+var AUDIO_FILE = [];
+const audio_play = window.document.createElement("input");
+audio_play.type = "file";
+audio_play.id = 'audio_input';
+audio_play.accept = ".mp3, .ogg|audio/*";
+ 
+function create_audio_input(){
+ audio_play.onchange = function(e){
+ AUDIO_FILE = new Audio;
+ AUDIO_FILE.src =  window.URL.createObjectURL(this.files[0]);
+ }; 
+};
+
+
+function load_audio(){
+  audio_play.click();
+};
+
+function play_audio(){
+ AUDIO_FILE.play();
+};
+
+function stop_audio(){
+ AUDIO_FILE.pause();
+ AUDIO_FILE.currentTime = 0;
+};
+
 function set_canvas_size(){
   var a = document.getElementById('canvas');
   a.width = 680;
   a.height = 1020;
+
 };
 
 </script>
@@ -203,7 +226,7 @@ function exportVid(fn, blob) {
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4496016,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4500576,"index.wasm":17493574},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {

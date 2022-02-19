@@ -24,7 +24,6 @@
     		color: white;
 		}
 
-
 		#canvas:focus {
 			outline: none;
 		}
@@ -130,11 +129,13 @@
 </script>
 
 <script>
+//for loading and playing audio file
+
 var AUDIO_FILE = [];
 const audio_play = window.document.createElement("input");
 audio_play.type = "file";
 audio_play.id = 'audio_input';
-audio_play.accept = ".mp3, .ogg|audio/*";
+audio_play.accept = ".mp3, .wav, .ogg|audio/*";
  
 function create_audio_input(){
  audio_play.onchange = function(e){
@@ -142,7 +143,6 @@ function create_audio_input(){
  AUDIO_FILE.src =  window.URL.createObjectURL(this.files[0]);
  }; 
 };
-
 
 function load_audio(){
   audio_play.click();
@@ -170,17 +170,17 @@ function set_canvas_size(){
 
 </script>
 
-
 <script>
-
-// this is for video 
+// For recording video 
 
 function startRecording(fn = 'sayNsend.webm', timerec = 3000) {
-  //var canvas_vid = document.getElementById('canvas_video');
-  //const stream = canvas_vid.captureStream();   
   
-  const chunks = [];
-  const stream = canvas.captureStream();   
+const chunks = [];
+  const stream = canvas.captureStream();
+  if(AUDIO_FILE.length != 0){
+	  const astream = AUDIO_FILE.captureStream();
+	  stream.addTrack(astream.getAudioTracks()[0]);
+  };	   
   const rec = new MediaRecorder(stream); 
   rec.ondataavailable = e => chunks.push(e.data);
   rec.onstop = e => exportVid(fn, new Blob(chunks, {type: 'video/webm'}));
@@ -196,7 +196,6 @@ function exportVid(fn, blob) {
   const a = document.createElement('a');
   a.download = fn;
   a.href = vid.src;
-  //a.textContent = 'download the video';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -234,7 +233,7 @@ function exportVid(fn, blob) {
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4505760,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":4502016,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {

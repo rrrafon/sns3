@@ -162,11 +162,42 @@ function stop_audio(){
 
 };
 
+</script>
+
+
+<script>
+
+	
 function set_canvas_size(){
-  var a = document.getElementById('canvas');
-  a.width = 680;
-  a.height = 1020;
+	
+	var game_canvas = document.getElementById('canvas');
+	
+	var proj_x = window.innerWidth;
+	var proj_y = window.innerHeight;
+	var p_x;
+	var p_y;
+
+	if(proj_x >= 1280){
+		p_y = (proj_x/(1280))*proj_y;
+		if(p_y >= proj_y){
+			p_y = p_y * (proj_y/p_y);
+			p_x = ((p_y * (proj_y/p_y))*((proj_y*1280)/1920))/proj_y;
+		}else{
+			p_y = (proj_x/(1280))*proj_y;
+			p_x = proj_x;
+		}	
+	}else{
+		p_y = proj_y/(1920/proj_y);
+		p_x = proj_x/(1280/proj_x);
+	}
+	
+	game_canvas.width = Math.round(p_x);
+	game_canvas.height =Math.round(p_y);
+	console.log(game_canvas.width, game_canvas.height);
 };
+
+
+
 
 </script>
 

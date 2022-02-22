@@ -171,12 +171,12 @@ function stop_audio(){
 function set_canvas_size(){
 	
 	var game_canvas = document.getElementById('canvas');
-	//var proj_x = window.outerWidth;
-	//var proj_y = window.outerHeight;
+	var proj_x = window.innerWidth;
+	var proj_y = window.innerHeight;
 	//var proj_x = document.documentElement.clientWidth;
 	//var proj_y = document.documentElement.clientHeight;
-	const proj_x = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-	const proj_y = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+	//const proj_x = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+	/const proj_y = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 	
 	var p_x;
 	var p_y;

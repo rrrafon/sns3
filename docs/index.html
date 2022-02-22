@@ -195,8 +195,11 @@ function set_canvas_size(){
 		p_x = proj_x/(1280/proj_x);
 	}
 	
-	game_canvas.width = Math.round(p_x);
-	game_canvas.height =Math.round(p_y);
+	game_canvas.width = 640;
+	game_canvas.height =960;
+	
+	//game_canvas.width = Math.round(p_x);
+	//game_canvas.height =Math.round(p_y);
 	console.log(game_canvas.width, game_canvas.height);
 };
 

@@ -171,12 +171,8 @@ function stop_audio(){
 function set_canvas_size(){
 	
 	var game_canvas = document.getElementById('canvas');
-	//var proj_x = window.innerWidth;
-	//var proj_y = window.innerHeight;
-	var proj_x = document.documentElement.clientWidth;
-	var proj_y = document.documentElement.clientHeight;
-	//const proj_x = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-	/const proj_y = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+	var proj_x = window.innerWidth;
+	var proj_y = window.innerHeight;
 	
 	var p_x;
 	var p_y;
@@ -198,8 +194,6 @@ function set_canvas_size(){
 	game_canvas.width = 640;
 	game_canvas.height =960;
 	
-	//game_canvas.width = Math.round(p_x);
-	//game_canvas.height =Math.round(p_y);
 	console.log(game_canvas.width, game_canvas.height);
 };
 

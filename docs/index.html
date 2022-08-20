@@ -198,6 +198,8 @@ function set_canvas_size(){
 
 </script>
 
+
+
 <script>
 // For recording video 
 
@@ -230,7 +232,30 @@ function exportVid(fn, blob) {
   URL.revokeObjectURL(vid.src);
 }
 
+
+//for saving text
+
+// Function to download data to a file
+function savePhoneme(filename, data) {
+    var file = new Blob([data], {type: "text/plain"});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
 </script>
+
 
 
 
@@ -261,7 +286,7 @@ function exportVid(fn, blob) {
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":3258112,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":3281024,"index.wasm":13342674},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {
